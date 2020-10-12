@@ -65,10 +65,10 @@ else
 	OBJ_EXT = .o
 
 	INC += -I../gmp/include
-	LIBS += -L../gmp/lib/linux/x86_64
+	LIBS += -L../gmp/.libs
 
 	INC += -I../gmp-ecm/include/linux
-	LIBS += -L../gmp-ecm/lib/linux/x86_64
+	LIBS += -L../gmp-ecm/.LIBS
 endif
 
 
@@ -92,7 +92,7 @@ endif
 ifeq ($(NFS),1)
 	CFLAGS += -DUSE_NFS
 #	modify the following line for your particular msieve installation
-	LIBS += -L../msieve/lib/linux/x86_64 
+	LIBS += -L../msieve
 	LIBS += -lmsieve
 endif
 
@@ -119,6 +119,8 @@ ifeq ($(STATIC),1)
 else
 	LIBS += -lpthread -lm -ldl
 endif
+
+LIBS+= -lc -lz
 
 CFLAGS += $(OPT_FLAGS) $(WARN_FLAGS) $(INC)
 
